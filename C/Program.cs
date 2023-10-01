@@ -1,120 +1,91 @@
-﻿using System;
-using System.Diagnostics;
-
-internal class Program
+﻿class Program
 {
     static void Main(string[] args)
     {
-        double a, b;
-        int oper;
-        Console.WriteLine("Выберите операцию, которую хотите выполнить: ");
-        Console.WriteLine("1. сложить два числа");
-        Console.WriteLine("2. вычесть первое из второго");
-        Console.WriteLine("3. перемножить два числа");
-        Console.WriteLine("4. разделить первое на второе");
-        Console.WriteLine("5. возвести в n степень первое число");
-        Console.WriteLine("6. найти квадратный корень из числа");
-        Console.WriteLine("7. найти 1 процент из числа");
-        Console.WriteLine("8. найти факториал из числа");
-        Console.WriteLine("9. выйти из программы");
-        do
+        while (true)
         {
-            Console.WriteLine("выберите операцию");
-            oper = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Выберите программу, которую хотите запустить");
+            Console.WriteLine("1.Угадай число");
+            Console.WriteLine("2.Таблица умножения");
+            Console.WriteLine("3.Вывод делителей числа");
+            Console.WriteLine("4.Закрыть программу");
 
-            switch (oper)
+            int game = Convert.ToInt32(Console.ReadLine());
+
+            if (game == 1)
             {
-                case 1:
-                    Console.WriteLine("Введите первое число");
-                    a = double.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Введите второе число");
-                    b = double.Parse(Console.ReadLine());
-
-                    Console.Write("Результат: ");
-                    Console.WriteLine(a + b);
-                    break;
-                case 2:
-                    Console.WriteLine("Введите первое число");
-                    a = double.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Введите второе число");
-                    b = double.Parse(Console.ReadLine());
-
-                    Console.Write("Результат: ");
-                    Console.WriteLine(a - b);
-                    break;
-                case 3:
-                    Console.WriteLine("Введите первое число");
-                    a = double.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Введите второе число");
-                    b = double.Parse(Console.ReadLine());
-
-                    Console.Write("Результат: ");
-                    Console.WriteLine(a * b);
-                    break;
-                case 4:
-                    Console.WriteLine("Введите первое число");
-                    a = double.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Введите второе число");
-                    b = double.Parse(Console.ReadLine());
-                    for (int i = 1; i < 2; i++)
-                        if (b == 0)
-                        {
-                            Console.WriteLine("Ошибка");
-                        }
-                        else
-                        {
-                            Console.Write("Результат: ");
-                            Console.WriteLine(a / b);
-                        }
-                    break;
-                case 5:
-                    Console.WriteLine("Введите первое число");
-                    a = double.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Введите второе число");
-                    b = double.Parse(Console.ReadLine());
-                    Console.Write("Результат: ");
-                    Console.WriteLine(Math.Pow(a, b));
-                    break;
-                case 6:
-                    Console.WriteLine("Введите первое число:");
-                    a = Convert.ToDouble(Console.ReadLine());
-                    Console.WriteLine($" Результат: {Math.Sqrt(a)}"); ;
-                    break;
-                case 7:
-                    Console.WriteLine("Введите первое число");
-                    a = double.Parse(Console.ReadLine());
-
-                    Console.Write("Результат: ");
-                    Console.WriteLine(a / 100);
-                    break;
-                case 8:
-                    Console.WriteLine("Введите первое число");
-                    a = Convert.ToDouble(Console.ReadLine());
-                    double factorial = 1;
-                    for (int i = 1; i <= a; i++)
-                    {
-                        factorial *= i;
-                    }
-                    Console.WriteLine($"Результат: {factorial}");
-                    break;
-                case 9:
-
-                    {
-                        Console.WriteLine("Bye bye");
-                        Process.GetCurrentProcess().Kill();
-                        break;
-                    }
-
-
-
-
+                Ga();
             }
-        } while (oper != 0);
+            if (game == 2)
+            {
+                Gb();
+            }
+
+            if (game == 3)
+            {
+                Gc();
+            }
+            if (game == 4)
+            {
+                break;
+            }
+            if (game > 4)
+            {
+                Console.WriteLine("Ошибка");
+            }
+        }
+
+    }
+    static void Ga()
+    {
+
+        Console.WriteLine("Угадай число от 0 до 100!");
+
+        Random rnd = new Random(); //задаем рандом
+
+        int a = rnd.Next(100);// а это загаданное число с диапозоном
+        int b;
+        do //цикл сюда           
+        {
+            b = Convert.ToInt32(Console.ReadLine());
+            if (a > b)
+            {
+                Console.WriteLine("Надо больше");
+            }
+            if (a < b)
+            {
+                Console.WriteLine("Надо меньше");
+            }
+            if (a == b)
+            {
+                Console.WriteLine("Ура, победа!");
+            }
+        } while (a != b);
+    }
+
+    static void Gb()
+    {
+        var table = new int[10, 10];
+        for (int i = 0; i < 10; ++i)
+        {
+            for (int j = 0; j < 10; ++j)
+            {
+                table[i, j] = i * j;
+            }
+        }
+        for (int i = 0; i < 10; ++i)
+        {
+            for (int j = 0; j < 10; ++j)
+            {
+                Console.Write("{0, 3}", table[i, j]);
+            }
+            Console.WriteLine();
+        }
+    }
+    static void Gc()
+    {
+
+
 
 
 
