@@ -83,11 +83,14 @@
         }
     }
     static void Gc()
-    {
-
-
-
-
-
+    {        
+        Console.WriteLine("Введите число:");
+        int c = Convert.ToInt32(Console.ReadLine());
+        for (int d = 1; d <= c; d++)
+        {
+            if (c % d == 0)
+                Console.Write("{0}", d + "\t");
+        }
+        Console.WriteLine("");
     }
 }
